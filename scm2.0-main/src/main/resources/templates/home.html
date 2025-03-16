@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
+
+    
+</head>
+<body>
+    <div class="bg-gray-200 w-1/2 p-4 mx-auto m-3">
+       
+
+        <h1  data-th-text=${name}>Welcome to home </h1>
+        <p class="text-2xl font-bold"> youtube channel : <span data-th-text=${chanel}></span></p>
+        <p> github details : <span th:text=${github}></span></p>
+        <a data-th-href="${github}"> click me </a>
+        <P class="text-2xl">
+            jwdywdi  ehvfyurgf fhfoh
+        </P>
+    </div>
+</body>
+</html>
