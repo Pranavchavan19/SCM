@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{})}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Service</title>
 </head>
 <body>
-    <h1> this is service  page </h1>
-<hr />
-    <!-- using fragmennt -->
-     <div th:insert="~{base :: parent('service one' ,20)}">
-
-     </div>
+    <section id="content"> 
+        <h1>Welocme to service page</h1>
+        <p> qwertyuiop szxdcvbn dgfvrdewcv d ewbydwe dsxbwebfg isbsxweugug ihsxugweugfhoiw uywsvyfe</p>
+    </section>
+  
 </body>
 </html>

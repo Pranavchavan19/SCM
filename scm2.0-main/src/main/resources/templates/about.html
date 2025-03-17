@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>About page</title>
 </head>
 <body>
-    <h1> this is about page </h1>
-<hr />
-    <!-- using fragmennt -->
-     <div th:insert="~{base :: parent(10,20)}">
-
-     </div>
+    
+    <div id="content">
+        <h1>Welcome to about page</h1>
+    </div>
+    <script>
+        console.log("about page");
+    </script>
+     <script>
+        console.log(" secnd about page");
+    </script>
 </body>
 </html>

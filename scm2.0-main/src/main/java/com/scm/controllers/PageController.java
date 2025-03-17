@@ -9,11 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageController {
 
-    private final Application application;
-
-    PageController(Application application) {
-        this.application = application;
-    }
+    
 
     @RequestMapping("/home")
     public String home(Model model) {
@@ -29,7 +25,9 @@ public class PageController {
 
 
     @RequestMapping("/about")
-    public String about(){
+    public String about(Model model){
+        model.addAttribute("islogin", true);
+       
      System.out.println("about page is loading");
         return "about";
     }
