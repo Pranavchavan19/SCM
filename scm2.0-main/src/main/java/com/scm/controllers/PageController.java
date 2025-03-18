@@ -37,4 +37,19 @@ public class PageController {
         System.out.println("This is services page");
         return "services";
     }
+
+    @RequestMapping("/login")
+    public String login(){ 
+          return "login";
+    }
+
+    @RequestMapping("/register")
+    public String register(){ 
+        return "register";
+    }
+    
+    @RequestMapping("/contact")
+    public String contact(){ 
+        return "contact";
+    }
 }
