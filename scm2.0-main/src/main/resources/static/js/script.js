@@ -55,9 +55,9 @@ function changePageTheme(theme, oldTheme) {
   document.querySelector("html").classList.add(theme);
 
   // change the text of button
-//   document
-//     .querySelector("#theme_change_button")
-//     .querySelector("span").textContent = theme == "light" ? "Dark" : "Light";
+  document
+    .querySelector("#theme_change_button")
+    .querySelector("span").textContent = theme == "light" ? "Dark" : "Light";
 }
 
 //change page change theme
