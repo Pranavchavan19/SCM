@@ -1,7 +1,7 @@
 package com.scm.controllers;
 
 
-import com.scm.Application;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +46,11 @@ public class PageController {
     }
 
     @GetMapping("/register")
-    public String register(){ 
+    public String register( Model model){ 
+
+        UserForm userForm = new UserForm();
+
+        model.add
         return "register";
     }
     
