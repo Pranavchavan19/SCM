@@ -14,6 +14,8 @@ import com.scm.entities.user;
 import com.scm.forms.UserForm;
 import com.scm.services.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class PageController {
 
@@ -69,7 +71,7 @@ public class PageController {
     }
 
     @RequestMapping(value = "/do-register", method = RequestMethod.POST)
-    public String  processRegister( @ModelAttribute UserForm userForm){
+    public String  processRegister( @ModelAttribute UserForm userForm , HttpSession session){
 
         System.out.println("processing form");
 
@@ -96,6 +98,8 @@ public class PageController {
 
        user savedUser =  userService.saveUser(user);
        System.out.println("saved user");
+
+       session.setAttribute("message" , "registration successful");
         return "redirect:/home";
     }
 }
