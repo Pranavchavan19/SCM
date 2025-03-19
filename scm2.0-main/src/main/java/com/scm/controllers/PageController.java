@@ -4,14 +4,16 @@ package com.scm.controllers;
 import com.scm.Application;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class PageController {
 
     
 
-    @RequestMapping("/home")
+    @GetMapping("/home")
     public String home(Model model) {
 
      System.out.println("home page h");
@@ -24,7 +26,7 @@ public class PageController {
     }
 
 
-    @RequestMapping("/about")
+    @GetMapping("/about")
     public String about(Model model){
         model.addAttribute("islogin", true);
        
@@ -32,24 +34,31 @@ public class PageController {
         return "about";
     }
 
-    @RequestMapping("/services")
+    @GetMapping("/services")
     public String services(){
         System.out.println("This is services page");
         return "services";
     }
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login(){ 
           return "login";
     }
 
-    @RequestMapping("/register")
+    @GetMapping("/register")
     public String register(){ 
         return "register";
     }
     
-    @RequestMapping("/contact")
+    @GetMapping("/contact")
     public String contact(){ 
         return "contact";
+    }
+
+    @RequestMapping(value = "/do-register", method = RequestMethod.POST)
+    public String  processRegister(){
+
+        System.out.println("processing form");
+        return "redirect:/home";
     }
 }
