@@ -2,6 +2,7 @@ package com.scm.controllers;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,12 +10,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.scm.entities.user;
 import com.scm.forms.UserForm;
+import com.scm.services.UserService;
 
 @Controller
 public class PageController {
 
-    
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/home")
     public String home(Model model) {
@@ -70,6 +74,18 @@ public class PageController {
         System.out.println("processing form");
 
         System.out.println(userForm);
+
+        user user1 =  user.builder()
+        .name(userForm.getName())
+        .email(userForm.getEmail())
+        .password(userForm.getPassword())
+        .about(userForm.getAbout())
+        .phoneNumber(userForm.getPhoneNumber())
+        .profilePic("https://avatars.githubusercontent.com/u/144905435?v=4")
+        .build();
+
+       user savedUser =  userService.saveUser(user1);
+       System.out.println("saved user");
         return "redirect:/home";
     }
 }
