@@ -2,6 +2,7 @@ package com.scm.services.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,14 +26,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(String id) {
-        // TODO Auto-generated method stub
+        user user2 = userRepo.findById(id)
+        .orElseThrow( () -> new ResourceNotFoundException("User Not Found Exception"));
+
+         userRepo.delete(user2);
+
         
     }
 
     @Override
     public List<user> getAllUsers() {
-        // TODO Auto-generated method stub
-        return null;
+        
+        return userRepo.findAll();
     }
 
     @Override
@@ -43,19 +48,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean isUserExist(String userId) {
-        // TODO Auto-generated method stub
-        return false;
+       
+        user user2 =  userRepo.findById(userId).orElse(null);
+        return user2 != null ? true : false;
+
     }
 
     @Override
     public boolean isUserExistByEmail(String email) {
-        // TODO Auto-generated method stub
-        return false;
+       
+      user user2 = userRepo.findByEmail(email).orElse(null);
+        return user2 != null ? true : false;
     }
 
     @Override
     public user saveUser(user user) {
        
+        // user Id : have to generate dynamically
+
+        String userId = UUID.randomUUID().toString();
+        user.setUserId(userId);
+
+        // password encoded
+
+        // user.setPassword(userId);
         return userRepo.save(user);
     }
 
@@ -79,6 +95,12 @@ public class UserServiceImpl implements UserService {
         user2.setProvider(user.getProvider());
 
         user2.setProviderUserId(user.getProviderUserId());
+
+        // save user in database 
+
+        user save =  userRepo.save(user2);
+
+        return Optional.ofNullable(save);
     }
 
 
