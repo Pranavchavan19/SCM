@@ -3,9 +3,13 @@ package com.scm.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.scm.entities.user;
+import com.scm.helpers.ResourceNotFoundException;
 import com.scm.repositories.UserRepo;
 import com.scm.services.UserService;
 
@@ -13,8 +17,11 @@ import com.scm.services.UserService;
 public class UserServiceImpl implements UserService {
 
 
-    @Aut
+    @Autowired
     private UserRepo userRepo;
+
+
+    private Logger logger= LoggerFactory.getLogger(this.getClass());
 
     @Override
     public void deleteUser(String id) {
@@ -30,8 +37,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<user> getUserById(String id) {
-        // TODO Auto-generated method stub
-        return Optional.empty();
+       
+        return userRepo.findById(id);
     }
 
     @Override
@@ -48,14 +55,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public user saveUser(user user) {
-        // TODO Auto-generated method stub
-        return null;
+       
+        return userRepo.save(user);
     }
 
     @Override
     public Optional<user> updateUser(user user) {
-        // TODO Auto-generated method stub
-        return Optional.empty();
+      
+        user user2 = userRepo.findById(user.getUserId()).orElseThrow( () -> new ResourceNotFoundException("User Not Found Exception"));
+       
+        // update karenge user2 se  user 
+
+        user2.setName(user.getName());
+        user2.setEmail(user.getEmail());
+        user2.setPassword(user.getPassword());
+        user2.setAbout(user.getAbout());
+        user2.setPhoneNumber(user.getPhoneNumber());
+        user2.setProfilePic(user.getProfilePic());
+        user2.setEnabled(user.isEnabled());
+        user2.setEmailVerified(user.isEmailVerified());
+
+        user2.setPhoneVerified(user.isPhoneVerified());
     }
 
 
