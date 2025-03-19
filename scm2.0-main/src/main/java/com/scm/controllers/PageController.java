@@ -100,6 +100,6 @@ public class PageController {
        System.out.println("saved user");
 
        session.setAttribute("message" , "registration successful");
-        return "redirect:/home";
+        return "redirect:/register";
     }
 }
