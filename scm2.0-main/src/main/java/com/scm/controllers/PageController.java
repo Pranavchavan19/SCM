@@ -75,16 +75,26 @@ public class PageController {
 
         System.out.println(userForm);
 
-        user user1 =  user.builder()
-        .name(userForm.getName())
-        .email(userForm.getEmail())
-        .password(userForm.getPassword())
-        .about(userForm.getAbout())
-        .phoneNumber(userForm.getPhoneNumber())
-        .profilePic("https://avatars.githubusercontent.com/u/144905435?v=4")
-        .build();
+        // user user1 =  user.builder()
+        // .name(userForm.getName())
+        // .email(userForm.getEmail())
+        // .password(userForm.getPassword())
+        // .about(userForm.getAbout())
+        // .phoneNumber(userForm.getPhoneNumber())
+        // .profilePic("https://avatars.githubusercontent.com/u/144905435?v=4")
+        // .build();
 
-       user savedUser =  userService.saveUser(user1);
+        user user = new user();
+
+        user.setName(userForm.getName());
+        user.setEmail(userForm.getEmail());
+        user.setPassword(userForm.getPassword());
+        user.setAbout(userForm.getAbout());
+        user.setPhoneNumber(userForm.getPhoneNumber());
+        user.setProfilePic("https://avatars.githubusercontent.com/u/144905435?v=4");
+
+
+       user savedUser =  userService.saveUser(user);
        System.out.println("saved user");
         return "redirect:/home";
     }
