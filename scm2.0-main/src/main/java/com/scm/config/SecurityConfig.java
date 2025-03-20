@@ -60,7 +60,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 
         httpSecurity.authorizeHttpRequests(authorize ->{
-            authorize.requestMatchers("/home","/register","services").permitAll();
+            // authorize.requestMatchers("/home","/register","services").permitAll();
+            authorize.requestMatchers("/user/**").authenticated();
+            authorize.anyRequest().permitAll(); 
         });
 
         return httpSecurity.build();
