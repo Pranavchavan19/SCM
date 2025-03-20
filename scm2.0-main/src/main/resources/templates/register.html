@@ -36,7 +36,9 @@
              data-th-action="@{'/do-register'}"
               method="post"
               th:object="${userForm}"
-             class="mt-5">
+             class="mt-5"
+             novalidate
+             >
               <!-- Name -->
 
               <div class="mb-3">
@@ -53,6 +55,10 @@
                   placeholder="Enter Here"
                   required
                 />
+                <p 
+                data-th-if="${#fields.hasErrors('name')}"
+                data-th-errors="*{name}"
+                class="text-red-600 px-1 py-2">Name is required</p>
               </div>
 
               <!-- email -->
