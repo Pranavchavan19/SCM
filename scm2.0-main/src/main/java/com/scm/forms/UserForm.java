@@ -19,6 +19,7 @@ import lombok.ToString;
 public class UserForm {
 
     @Email(message = "invalid email address")
+    @NotBlank(message = "email is required")
     private String  email;
 
     @NotBlank(message = "username Is reqired")
