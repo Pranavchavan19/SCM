@@ -19,6 +19,8 @@ import lombok.Setter;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 
 @Entity(name = "user")
 @Table(name = "users")
@@ -27,7 +29,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class user  {
+public class user implements UserDetails {
 
     @Id
     private String userId;
