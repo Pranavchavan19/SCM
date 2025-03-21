@@ -72,19 +72,27 @@
 			<optional>true</optional>
 		</dependency>
 
-<dependencies>
-		<dependency>
+<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
-	</dependencies>
+
+		
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		
+
+
 	</dependencies>
+
+
+
+
 
 	<build>
 		<plugins>
@@ -117,4 +125,6 @@
 
 
 	
+
+
 </project>
