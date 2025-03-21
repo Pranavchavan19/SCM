@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -44,15 +45,26 @@ public class SecurityConfig {
     @Autowired
     private SecurityCustomUserDetailService userDetailService;
 
+    // @Bean
+    // public DaoAuthenticationProvider authenticationProvider(){
+
+    //    DaoAuthenticationProvider daoAuthenticationProvider = new  DaoAuthenticationProvider();
+
+    //    daoAuthenticationProvider.setUserDetailsService(userDetailService);
+    //    daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+
+    //    return daoAuthenticationProvider;
+    // }
+
     @Bean
-    public DaoAuthenticationProvider authenticationProvider(){
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        // user detail service ka object:
+        daoAuthenticationProvider.setUserDetailsService(userDetailService);
+        // password encoder ka object
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
 
-       DaoAuthenticationProvider daoAuthenticationProvider = new  DaoAuthenticationProvider();
-
-       daoAuthenticationProvider.setUserDetailsService(userDetailService);
-       daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-
-       return daoAuthenticationProvider;
+        return daoAuthenticationProvider;
     }
 
 
@@ -64,6 +76,8 @@ public class SecurityConfig {
             authorize.requestMatchers("/user/**").authenticated();
             authorize.anyRequest().permitAll(); 
         });
+
+        httpSecurity.formLogin(Customizer.withDefaults());
 
         return httpSecurity.build();
     }
